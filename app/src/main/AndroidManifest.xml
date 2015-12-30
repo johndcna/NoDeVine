@@ -31,6 +31,30 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nodevine.MainActivity" />
         </activity>
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.nodevine.MainActivity" />
+        </activity>
+        <activity
+            android:name=".MarketActivity"
+            android:label="@string/title_activity_market"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.nodevine.MainActivity" />
+        </activity>
+        <activity
+            android:name=".MapActivity"
+            android:label="@string/title_activity_map"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.nodevine.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

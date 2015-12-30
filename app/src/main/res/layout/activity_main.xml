@@ -16,4 +16,51 @@
         android:layout_centerHorizontal="true"
         android:scaleType="fitCenter"
         android:background="@null" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+
+
+        <ImageButton
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:id="@+id/imageButton2"
+            android:src="@drawable/settings"
+            android:scaleType="fitCenter"
+            android:background="@null"
+            android:onClick="goSettings"/>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1" />
+
+        <ImageButton
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:id="@+id/imageButton3"
+            android:src="@drawable/market"
+            android:scaleType="fitCenter"
+            android:background="@null"
+            android:onClick="goMarket"/>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1" />
+
+        <ImageButton
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:id="@+id/imageButton4"
+            android:src="@drawable/map"
+            android:scaleType="fitCenter"
+            android:background="@null"
+            android:onClick="goMap"/>
+    </LinearLayout>
+
 </RelativeLayout>

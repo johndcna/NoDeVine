@@ -1,30 +1,26 @@
 package com.nodevine;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.Window;
 
 
-public class MainActivity extends Activity {
+public class MapActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //Remove title bar
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_map);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_map, menu);
         return true;
     }
 
@@ -41,24 +37,5 @@ public class MainActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    public void goBuild(View view) {
-        Intent intent = new Intent(this,ProcessingActivity.class);
-        startActivity(intent);
-    }
-
-    public void goSettings(View view) {
-        Intent intent = new Intent(this,SettingsActivity.class);
-        startActivity(intent);
-    }
-
-    public void goMarket(View view) {
-        Intent intent = new Intent(this,MarketActivity.class);
-        startActivity(intent);
-    }
-    public void goMap(View view) {
-        Intent intent = new Intent(this,MapActivity.class);
-        startActivity(intent);
     }
 }
