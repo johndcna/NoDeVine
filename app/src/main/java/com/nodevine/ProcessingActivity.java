@@ -13,7 +13,6 @@ import android.widget.TextView;
 public class ProcessingActivity extends Activity {
     TextView textGoesHere;
     long startTime;
-    long countUp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,9 +27,17 @@ public class ProcessingActivity extends Activity {
         stopWatch.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener(){
             @Override
             public void onChronometerTick(Chronometer arg0) {
-                countUp = (SystemClock.elapsedRealtime() - arg0.getBase()) / 1000;
-                String asText = (countUp / 60) + ":" + (countUp % 60);
-                textGoesHere.setText(asText);
+                /*countUp = (SystemClock.elapsedRealtime() - arg0.getBase()) / 1000;
+                String asText = ((countUp/60)/60) +":"+ (countUp / 60) + ":" + (countUp % 60);
+                textGoesHere.setText(asText);*/
+                long time = SystemClock.elapsedRealtime() - arg0.getBase();
+                int h   = (int)(time/3600000);
+                int m = (int)(time - h*3600000)/60000;
+                int s= (int)(time - h*3600000- m*60000)/1000 ;
+                String hh = h < 10 ? "0"+h: h+"";
+                String mm = m < 10 ? "0"+m: m+"";
+                String ss = s < 10 ? "0"+s: s+"";
+                textGoesHere.setText(hh+":"+mm+":"+ss);
             }
         });
         stopWatch.start();
