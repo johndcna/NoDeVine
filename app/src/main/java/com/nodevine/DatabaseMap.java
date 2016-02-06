@@ -18,8 +18,7 @@ public class DatabaseMap extends SQLiteOpenHelper {
     public static final String TBL_type = "type";
     public static final String TBL_level = "level";
     public static final String TBL_name = "name";
-    public static final String TBL_xPos = "xPos";
-    public static final String TBL_yPos = "yPos";
+    public static final String TBL_location = "location";
     public static final String TBL_time = "time";
 
     SQLiteDatabase db;
@@ -46,8 +45,7 @@ public class DatabaseMap extends SQLiteOpenHelper {
                 TBL_type + " INTEGER,"+
                 TBL_level +" INTEGER,"+
                 TBL_name +" TEXT,"+
-                TBL_xPos + " INTEGER,"+
-                TBL_yPos + " INTEGER,"+
+                TBL_location + " INTEGER,"+
                 TBL_time + " REAL);");
     }
 
@@ -62,8 +60,7 @@ public class DatabaseMap extends SQLiteOpenHelper {
         contentValues.put(TBL_type,type);
         contentValues.put(TBL_level,level);
         contentValues.put(TBL_name,name);
-        contentValues.put(TBL_xPos,xPos);
-        contentValues.put(TBL_yPos,yPos);
+        contentValues.put(TBL_location,xPos);
         contentValues.put(TBL_time,time);
         long result =  db.insert(TABLE_NAME,null,contentValues);
         return (result == -1)?false:true;
@@ -71,21 +68,21 @@ public class DatabaseMap extends SQLiteOpenHelper {
 
     /**
      * @desc delete a specific building in the map
-     * @param x,y - int x,y coordinate
+     * @param loc - int location
      * @return bool - success or failure
      */
-    public boolean delete(int x,int y) {
-        int result =  db.delete(TABLE_NAME, TBL_xPos + "="+x+ " AND " + TBL_yPos + "="+y,null);
+    public boolean delete(int loc) {
+        int result =  db.delete(TABLE_NAME, TBL_location + "="+loc,null);
         return (result == -1)?false:true;
     }
 
     /**
      * @desc update a specific building name in the map
-     * @param name,x,y - String name, int x,y
+     * @param name,loc - String name, int loc
      * @return  bool - success or failure
      */
-    public boolean updateName(String name,int x,int y) {
-        int id  = getSelectedBuildingId(x,y);
+    public boolean updateName(String name,int loc) {
+        int id  = getSelectedBuildingId(loc);
 
         ContentValues args = new ContentValues();
         args.put(TBL_name, name);
@@ -95,36 +92,35 @@ public class DatabaseMap extends SQLiteOpenHelper {
 
     /**
      * @desc update a specific building name in the map
-     * @param x,y,newX,newY - int x,y coordinate and updated x,y coordinate
+     * @param loc, newLoc - int loc coordinate and updated loc coordinate
      * @return  bool - success or failure
      */
-    public boolean updateLocationXY(int x,int y,int newX,int newY) {
-        int id  = getSelectedBuildingId(x,y);
+    public boolean updateLocationXY(int loc,int newLoc) {
+        int id  = getSelectedBuildingId(loc);
 
         ContentValues args = new ContentValues();
-        args.put(TBL_xPos, newX);
-        args.put(TBL_yPos, newY);
+        args.put(TBL_location, newLoc);
         int result =  db.update(TABLE_NAME, args,TBL_id +"="+ id,null);
         return (result == -1)?false:true;
     }
 
     /**
      * @desc retrieve a specific building in the map
-     * @param x,y - x,y coordinate
+     * @param loc - location
      * @return Cursor
      */
-    public Cursor getSelectedBuilding(int x, int y) {
-        Cursor res = db.rawQuery("select * from "+TABLE_NAME+ " where "+TBL_xPos+ " ="+x+" AND "+TBL_yPos+ " ="+y,null);
+    public Cursor getSelectedBuilding(int loc) {
+        Cursor res = db.rawQuery("select * from "+TABLE_NAME+ " where "+TBL_location+ " ="+loc,null);
         return res;
     }
 
     /**
      * @desc retrieve id specific building in the map
-     * @param x,y - x,y coordinate
+     * @param loc
      * @return int
      */
-    public int getSelectedBuildingId(int x, int y) {
-        Cursor res = getSelectedBuilding(x,y);
+    public int getSelectedBuildingId(int loc) {
+        Cursor res = getSelectedBuilding(loc);
         return res.getInt(res.getColumnIndex(TBL_id));
     }
 
