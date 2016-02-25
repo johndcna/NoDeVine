@@ -1,10 +1,14 @@
 package com.nodevine;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
 import android.widget.Chronometer;
 import android.widget.TextView;
@@ -64,6 +68,27 @@ public class ProcessingActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void goConstruct(View v) {
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which){
+                    case DialogInterface.BUTTON_POSITIVE:
+                        Log.e("click", "yes");
+                        break;
+
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        Log.e("click", "no");
+                        break;
+                }
+            }
+        };
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Are you sure?").setPositiveButton("Yes", dialogClickListener)
+                .setNegativeButton("No", dialogClickListener).show();
     }
 
 

@@ -25,4 +25,17 @@
         android:layout_height="wrap_content"
         android:id="@+id/chronometer"
         android:visibility="gone"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Construct"
+        android:id="@+id/button"
+        android:layout_below="@+id/editText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="58dp"
+        android:background="#ffffa513"
+        android:onClick="goConstruct"/>
+
+
 </RelativeLayout>
