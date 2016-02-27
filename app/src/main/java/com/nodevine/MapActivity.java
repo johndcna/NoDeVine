@@ -6,6 +6,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 
+import java.util.Collections;
+
 
 public class MapActivity extends Activity {
 
@@ -14,6 +16,14 @@ public class MapActivity extends Activity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_map);
+/*
+        Intent intent = getIntent();
+        if(intent !=null) {
+            elem = intent.getStringExtra("elem");
+            highschool = intent.getStringExtra("hs");
+            college = intent.getStringExtra("college");
+        }
+        */
     }
 
 

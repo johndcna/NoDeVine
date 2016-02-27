@@ -3,6 +3,7 @@ package com.nodevine;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.util.Log;
@@ -17,14 +18,17 @@ import android.widget.TextView;
 public class ProcessingActivity extends Activity {
     TextView textGoesHere;
     long startTime;
-
+    String hh;
+    String mm;
+    String ss;
+    Chronometer stopWatch;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_processing);
 
-        Chronometer stopWatch = (Chronometer) findViewById(R.id.chronometer);
+        stopWatch = (Chronometer) findViewById(R.id.chronometer);
         startTime = SystemClock.elapsedRealtime();
 
         textGoesHere = (TextView) findViewById(R.id.editText);
@@ -38,9 +42,9 @@ public class ProcessingActivity extends Activity {
                 int h   = (int)(time/3600000);
                 int m = (int)(time - h*3600000)/60000;
                 int s= (int)(time - h*3600000- m*60000)/1000 ;
-                String hh = h < 10 ? "0"+h: h+"";
-                String mm = m < 10 ? "0"+m: m+"";
-                String ss = s < 10 ? "0"+s: s+"";
+                 hh = h < 10 ? "0"+h: h+"";
+                 mm = m < 10 ? "0"+m: m+"";
+                 ss = s < 10 ? "0"+s: s+"";
                 textGoesHere.setText(hh+":"+mm+":"+ss);
             }
         });
@@ -70,13 +74,20 @@ public class ProcessingActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void runMap(int h,int m,int s) {
+        Intent intent = new Intent(this,MapActivity.class);
+        intent.putExtra("","");
+        startActivityForResult(intent,0);
+    }
+
     public void goConstruct(View v) {
         DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 switch (which){
                     case DialogInterface.BUTTON_POSITIVE:
-                        Log.e("click", "yes");
+                        stopWatch.stop();
+                        runMap(1,2,3);
                         break;
 
                     case DialogInterface.BUTTON_NEGATIVE:
