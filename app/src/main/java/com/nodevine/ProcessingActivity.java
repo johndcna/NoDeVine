@@ -12,12 +12,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.Chronometer;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
 public class ProcessingActivity extends Activity {
     //added comment here lol
+    //added a new comment wtf
     TextView textGoesHere;
+    ImageView image;
     long startTime;
     String hh;
     String mm;
@@ -31,6 +34,7 @@ public class ProcessingActivity extends Activity {
 
         stopWatch = (Chronometer) findViewById(R.id.chronometer);
         startTime = SystemClock.elapsedRealtime();
+        image = (ImageView)findViewById(R.id.image);
 
         textGoesHere = (TextView) findViewById(R.id.editText);
         stopWatch.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener(){
@@ -47,6 +51,8 @@ public class ProcessingActivity extends Activity {
                  mm = m < 10 ? "0"+m: m+"";
                  ss = s < 10 ? "0"+s: s+"";
                 textGoesHere.setText(hh+":"+mm+":"+ss);
+
+                
             }
         });
         stopWatch.start();
@@ -70,7 +76,7 @@ public class ProcessingActivity extends Activity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
-        }
+            }
 
         return super.onOptionsItemSelected(item);
     }
