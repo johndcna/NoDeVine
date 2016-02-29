@@ -76,7 +76,9 @@ public class ProcessingActivity extends Activity {
 
     public void runMap(int h,int m,int s) {
         Intent intent = new Intent(this,MapActivity.class);
-        intent.putExtra("","");
+        intent.putExtra("hour",h);
+        intent.putExtra("min",m);
+        intent.putExtra("sec",s);
         startActivityForResult(intent,0);
     }
 
@@ -87,7 +89,7 @@ public class ProcessingActivity extends Activity {
                 switch (which){
                     case DialogInterface.BUTTON_POSITIVE:
                         stopWatch.stop();
-                        runMap(1,2,3);
+                        runMap(Integer.parseInt(hh),Integer.parseInt(mm),Integer.parseInt(ss));
                         break;
 
                     case DialogInterface.BUTTON_NEGATIVE:
