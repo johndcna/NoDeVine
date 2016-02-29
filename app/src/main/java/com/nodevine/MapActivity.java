@@ -31,7 +31,6 @@ public class MapActivity extends Activity implements View.OnClickListener {
             ss = intent.getIntExtra("sec", 0);
         }
         imgBtn = new ImageButton[16];
-        map = new Map[16];
         initializeImageButton();
 
         for(int i=0;i<16;i++) {
@@ -47,14 +46,6 @@ public class MapActivity extends Activity implements View.OnClickListener {
 
          switch (v.getId()) {
              case R.id.imageButton1:
-                 if(!map[0].isOccupied) {
-                     Log.e("cl","not occupied");
-                 }
-                 break;
-             case R.id.imageButton2:
-                 if(!map[1].isOccupied) {
-                     Log.e("c2","not occupied");
-                 }
                  break;
 
 
