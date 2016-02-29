@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 
 public class ProcessingActivity extends Activity {
+    //added comment here lol
     TextView textGoesHere;
     long startTime;
     String hh;
