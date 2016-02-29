@@ -2,6 +2,7 @@ package com.nodevine;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -17,12 +18,19 @@ import java.util.Collections;
 public class MapActivity extends Activity implements View.OnClickListener {
     int hh,mm,ss;
     ImageButton[] imgBtn;
+    DatabaseMap myDB;
+    boolean map1,map2,map3,map4;
+    boolean map5,map6,map7,map8;
+    boolean map9,map10,map11,map12;
+    boolean map13,map14,map15,map16;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_map);
+
+        myDB = new DatabaseMap(this);
 
         Intent intent = getIntent();
         if(intent !=null) {
@@ -42,6 +50,25 @@ public class MapActivity extends Activity implements View.OnClickListener {
 
     }
 
+    public void populate() {
+        if(!tableIsEmpty()) {
+
+        }
+    }
+
+    public void viewAllData() {
+        Cursor res = myDB.getAllData();
+
+        while(res.moveToNext()) {
+            //buffer.append("id: "+res.getString(0)+"\n");
+        }
+    }
+
+    public boolean tableIsEmpty() {
+        Cursor res = myDB.getAllData();
+        return (res.getCount() == 0)?true:false;
+    }
+
     public void onClick(View v) {
 
          switch (v.getId()) {
@@ -50,6 +77,45 @@ public class MapActivity extends Activity implements View.OnClickListener {
 
 
          }
+    }
+
+    public ImageButton getImageButton(String loc) {
+        switch (loc) {
+            case "1":
+                return imgBtn[0];
+            case "2":
+                return imgBtn[1];
+            case "3":
+                return imgBtn[2];
+            case "4":
+                return imgBtn[3];
+            case "5":
+                return imgBtn[4];
+            case "6":
+                return imgBtn[5];
+            case "7":
+                return imgBtn[6];
+            case "8":
+                return imgBtn[7];
+            case "9":
+                return imgBtn[8];
+            case "10":
+                return imgBtn[9];
+            case "11":
+                return imgBtn[10];
+            case "12":
+                return imgBtn[11];
+            case "13":
+                return imgBtn[12];
+            case "14":
+                return imgBtn[13];
+            case "15":
+                return imgBtn[14];
+            case "16":
+                return imgBtn[15];
+        }
+
+        return null;
     }
 
     public void initializeImageButton() {
